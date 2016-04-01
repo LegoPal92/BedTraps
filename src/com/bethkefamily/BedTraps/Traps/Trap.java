@@ -25,5 +25,9 @@ public interface Trap {
 	 */
 	public void trigger(Location location);
 	
-
+	/**
+	 * 
+	 * @return the traps.
+	 */
+	public HashMap<Location, Trap> getTraps();
 }

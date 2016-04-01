@@ -76,6 +76,10 @@ public class BedTrap implements Trap {
 		return traps.get(location);
 	}
 	
+	public HashMap<Location, Trap> getTraps(){
+		return traps;
+	}
+	
 	/**
 	 * Trigger the explosion process at the location of the bedtrap. 
 	 * @param location - The location of the BedTrap.
