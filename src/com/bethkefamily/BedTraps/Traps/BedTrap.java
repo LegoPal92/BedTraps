@@ -16,6 +16,9 @@ public class BedTrap implements Trap {
 
 	private static HashMap<Location, BedTrap> traps;
 	
+	private Location one;
+	private Location two;
+	
 	public BedTrap(){
 		traps = new HashMap<>();
 	}
@@ -33,14 +36,14 @@ public class BedTrap implements Trap {
 				|| location.getBlock().getType() == Material.BED_BLOCK){//I check for both bed and bed_block because not always
 			 															//do I get the same result in previous builds.
 			Bed bed = (Bed) location.getBlock().getState().getData();
-			Location second_half;
+			
 			if (bed.isHeadOfBed()){//Get the location of the other half of the bed.
-				second_half = location.getBlock().getRelative(bed.getFacing().getOppositeFace()).getLocation();
+				two = location.getBlock().getRelative(bed.getFacing().getOppositeFace()).getLocation();
 			} else {
-				second_half = location.getBlock().getRelative(bed.getFacing()).getLocation();
+				two = location.getBlock().getRelative(bed.getFacing()).getLocation();
 			}
 			traps.put(location, this);
-			traps.put(second_half, this);
+			traps.put(two, this);
 		}
 		return true;
 	}
@@ -58,14 +61,9 @@ public class BedTrap implements Trap {
 				|| location.getBlock().getType() == Material.BED_BLOCK){//I check for both bed and bed_block because not always
 																		//do I get the same result in previous builds.
 			Bed bed = (Bed) location.getBlock().getState().getData();
-			Location second_half;
-			if (bed.isHeadOfBed()){//Get the location of the other half of the bed.
-				second_half = location.getBlock().getRelative(bed.getFacing().getOppositeFace()).getLocation();
-			} else {
-				second_half = location.getBlock().getRelative(bed.getFacing()).getLocation();
-			}
+			
 			traps.remove(location);
-			traps.remove(second_half);
+			traps.remove(two);
 		}
 		return true;
 	}
@@ -96,11 +94,11 @@ public class BedTrap implements Trap {
 	 */
 	private static class BedTrapRunnable implements Runnable{
 
-		private Location location;
+		private BedTrap trap;
 		private int seconds = 3;
 		private int id;
-		public BedTrapRunnable(Location trap){
-			location = trap;
+		public BedTrapRunnable(BedTrap trap){
+			this.trap = trap;
 		}
 		
 		/**
@@ -118,17 +116,9 @@ public class BedTrap implements Trap {
 				Bukkit.getScheduler().cancelTask(id);
 				return;
 			}
-			
-				Bed bed = (Bed) location.getBlock().getState().getData();
-				Location second_half;
-				if (bed.isHeadOfBed()){//Get the location of the other half of the bed.
-					second_half = location.getBlock().getRelative(bed.getFacing().getOppositeFace()).getLocation();
-				} else {
-					second_half = location.getBlock().getRelative(bed.getFacing()).getLocation();
-				}
-				location.getWorld().playEffect(location, Effect.SMOKE, 0);
-				location.getWorld().playEffect(second_half, Effect.SMOKE, 0);
-				location.getWorld().playSound(location, Sound.BLOCK_STONE_BUTTON_CLICK_ON, 10, 0);
+				trap.one.getWorld().playEffect(location, Effect.SMOKE, 0);
+				trap.one.getWorld().playEffect(second_half, Effect.SMOKE, 0);
+				trap.one.getWorld().playSound(location, Sound.BLOCK_STONE_BUTTON_CLICK_ON, 10, 0);
 			
 			
 			seconds--;
