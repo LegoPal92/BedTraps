@@ -1,9 +1,9 @@
-package me.legopal92.example;
+package com.bethkefamily.BedTraps;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
-import me.legopal92.example.listeners.BedClickListener;
-import me.legopal92.example.listeners.BedPlaceListener;
+import com.bethkefamily.BedTraps.listeners.BedClickListener;
+import com.bethkefamily.BedTraps.listeners.BedPlaceListener;
 
 public class BedTraps {
 	

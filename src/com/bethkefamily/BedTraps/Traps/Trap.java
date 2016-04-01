@@ -1,4 +1,4 @@
-package me.legopal92.example.Traps;
+package com.bethkefamily.BedTraps.Traps;
 
 import java.util.HashMap;
 

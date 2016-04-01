@@ -1,4 +1,4 @@
-package me.legopal92.example.Traps;
+package com.bethkefamily.BedTraps.Traps;
 
 import java.util.HashMap;
 
@@ -10,7 +10,7 @@ import org.bukkit.Sound;
 import org.bukkit.material.Bed;
 import org.bukkit.scheduler.BukkitTask;
 
-import me.legopal92.example.BedTraps;
+import com.bethkefamily.BedTraps.BedTraps;
 
 public class BedTrap implements Trap {
 
@@ -129,7 +129,7 @@ public class BedTrap implements Trap {
 				}
 				location.getWorld().playEffect(location, Effect.SMOKE, 0);
 				location.getWorld().playEffect(second_half, Effect.SMOKE, 0);
-				location.getWorld().playSound(location, Sound.CLICK, 10, 0);
+				location.getWorld().playSound(location, Sound.BLOCK_STONE_BUTTON_CLICK_ON, 10, 0);
 			
 			
 			seconds--;

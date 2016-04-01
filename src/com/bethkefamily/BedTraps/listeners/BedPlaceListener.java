@@ -1,11 +1,11 @@
-package me.legopal92.example.listeners;
+package com.bethkefamily.BedTraps.listeners;
 
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
 
-import me.legopal92.example.Traps.BedTrap;
+import com.bethkefamily.BedTraps.Traps.BedTrap;
 
 public class BedPlaceListener implements Listener {
 	
