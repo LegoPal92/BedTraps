@@ -14,7 +14,7 @@ import com.bethkefamily.BedTraps.BedTraps;
 
 public class BedTrap implements Trap {
 
-	private HashMap<Location, TrapType> traps;
+	private static HashMap<Location, BedTrap> traps;
 	
 	public BedTrap(){
 		traps = new HashMap<>();
@@ -39,8 +39,8 @@ public class BedTrap implements Trap {
 			} else {
 				second_half = location.getBlock().getRelative(bed.getFacing()).getLocation();
 			}
-			traps.put(location, TrapType.BEDTRAP);
-			traps.put(second_half, TrapType.BEDTRAP);
+			traps.put(location, this);
+			traps.put(second_half, this);
 		}
 		return true;
 	}
@@ -69,14 +69,13 @@ public class BedTrap implements Trap {
 		}
 		return true;
 	}
-	
 	/**
 	 * 
-	 * @return the HashMap of BedTraps.
+	 * @param location - the location of the bedtrap.
+	 * @return a Bedtrap at the specified location.
 	 */
-	@Override
-	public HashMap<Location, TrapType> getTraps() {
-		return traps;
+	public static BedTrap getTrap(Location location){
+		return traps.get(location);
 	}
 	
 	/**

@@ -24,8 +24,8 @@ public class BedClickListener implements Listener {
 		if (event.getClickedBlock().getType() == Material.BED
 				|| event.getClickedBlock().getType() == Material.BED_BLOCK){//I check for both bed and bed_block because not always
 			 																//do I get the same result in previous builds.
-			BedTrap bt = new BedTrap();
-			if (!bt.getTraps().containsKey(event.getClickedBlock().getLocation())){//Checking if the block is a trap.
+			BedTrap bt = BedTrap.getTrap(event.getClickedBlock().getLocation());
+			if (bt == null){
 				return;
 			}
 			event.setCancelled(true);
