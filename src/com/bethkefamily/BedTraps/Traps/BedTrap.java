@@ -32,7 +32,7 @@ public class BedTrap implements Trap {
 		if (location.getBlock().getType() == Material.BED
 				|| location.getBlock().getType() == Material.BED_BLOCK){//I check for both bed and bed_block because not always
 			 															//do I get the same result in previous builds.
-			Bed bed = (Bed) location.getBlock();
+			Bed bed = (Bed) location.getBlock().getState().getData();
 			Location second_half;
 			if (bed.isHeadOfBed()){//Get the location of the other half of the bed.
 				second_half = location.getBlock().getRelative(bed.getFacing().getOppositeFace()).getLocation();
@@ -57,7 +57,7 @@ public class BedTrap implements Trap {
 		if (location.getBlock().getType() == Material.BED
 				|| location.getBlock().getType() == Material.BED_BLOCK){//I check for both bed and bed_block because not always
 																		//do I get the same result in previous builds.
-			Bed bed = (Bed) location.getBlock();
+			Bed bed = (Bed) location.getBlock().getState().getData();
 			Location second_half;
 			if (bed.isHeadOfBed()){//Get the location of the other half of the bed.
 				second_half = location.getBlock().getRelative(bed.getFacing().getOppositeFace()).getLocation();
@@ -119,7 +119,7 @@ public class BedTrap implements Trap {
 				return;
 			}
 			
-				Bed bed = (Bed) location.getBlock();
+				Bed bed = (Bed) location.getBlock().getState().getData();
 				Location second_half;
 				if (bed.isHeadOfBed()){//Get the location of the other half of the bed.
 					second_half = location.getBlock().getRelative(bed.getFacing().getOppositeFace()).getLocation();
